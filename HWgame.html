@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+<div style="margin-left: 45%; margin-top: 200px;">
+<p>Do You Feel Lucky?</p>
+<button id="start-game" style ="width:40px;height:40px;color:#a0c033"></button>
+</div>
+<script type="text/javascript">
+
+document.getElementById("start-game").onclick = play;
+
+function play(){
+var decide = "";
+var scoreUser = 0;
+var scoreComputer = 0;
+
+	while (scoreUser <3 && scoreComputer <3){
+		runGame();
+		
+		if (decide === "user") {
+			scoreUser++;
+			alert("user:" + scoreUser + "    " + "computer:" + scoreComputer);
+		} else if (decide === "computer") {
+			scoreComputer++;
+			alert("user:" + scoreUser + "    " + "computer:" + scoreComputer);
+}
+
+if (scoreComputer === 3){
+	alert("COMPUTER! wins the tournament as the first to 3!!! All the Humans are dead!");
+}else if (scoreUser === 3){
+	alert("user. you won... big deal. This is a dumb game.");
+}
+
+}
+
+
+
+function runGame() {
+
+
+	var user = getUserChoice();
+	var computer = getComputerChoice();
+	decide = getWinner(user,computer);
+	if (decide === "tie"){
+		alert("It is a draw!")
+	} else {
+	alert ("The computer chose " + computer + " so the " + decide + " wins!")
+	}	
+	return(decide)
+
+//user inputs rock, paper or scissors
+
+
+function getUserChoice(){
+			var userWeapon = "";
+      		var go = "no";
+            var n ="";
+            
+      			while (go === "no"){
+					userWeapon = prompt("Select 'Rock', 'Paper' or 'Scissors'.");
+					var q = userWeapon.length;
+					userWeapon = userWeapon.toLowerCase();
+					if (userWeapon[q-1] === "s"){
+            		userWeapon = userWeapon.substring(0,q-1);
+            		}
+              		if ( userWeapon === "rock" || userWeapon === "scissor" || userWeapon === "paper"){
+					go = "yes";		
+							} else {
+								alert("please choose a valid weapon")
+						go = "no";
+					}
+	
+      			}
+      return (userWeapon);		
+	}
+		
+
+//randomnly select the opponents "weapon"
+     function getComputerChoice() {
+		var weapons = ["rock","paper","scissors"];
+		var n = Math.floor(Math.random() * 3);
+
+		var computerWeapon = weapons[n];
+		
+		return(computerWeapon);
+
+	}
+
+
+ 
+
+	function getWinner(userWeapon,computerWeapon) {
+	//compare the user's to the computer's "weapon"
+		var result = "";
+
+			if (userWeapon === computerWeapon) 
+				{
+				result = "you tie"
+				return("tie");
+				} 
+				else if (( userWeapon === "scissor" && computerWeapon === "paper") || (userWeapon === "rock" && computerWeapon === "scissors") || (userWeapon === "paper" && computerWeapon === "rock"))
+
+				{
+				result = "you win";
+				return("user")
+				}
+						
+				else {
+				result = "you lose";
+				return("computer")
+				}
+
+			
+	}
+}
+
+
+
+}
+
+
+</script>
+</body>
+</html>
